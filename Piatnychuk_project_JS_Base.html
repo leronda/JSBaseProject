@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var positions = [
+        "Junior developer",
+        "Middle developer",
+        "Senior developer",
+        "Junior QA",
+        "Middle QA",
+        "Senior QA",
+        "Project manager",
+      ];
+
+      var names = [];
+
+      for (var i = 0; i < positions.length; i++) {
+        var name = prompt(`Введите имя для должности "${positions[i]}":`);
+        names.push(name);
+      }
+
+      var team = [];
+      for (var i = 0; i < positions.length; i++) {
+        var position = positions[i];
+        var salary = calculateSalary(position);
+        var employee = {
+          name: names[i],
+          position: positions[i],
+          salary: salary,
+          tellAboutYourself: function () {
+            console.log(
+              `Меня зовут ${this.name} и я - ${this.position}. Я зарабатываю ${this.salary}$.`
+            );
+          },
+        };
+        team.push(employee);
+      }
+
+      console.log(team);
+
+      function calculateSalary(position) {
+        var positionLower = position.toLowerCase();
+        var salary = 0;
+
+        if (positionLower.indexOf("junior") !== -1) {
+          salary = getRandomNumber(500, 1000);
+        } else if (positionLower.indexOf("middle") !== -1) {
+          salary = getRandomNumber(1500, 2000);
+        } else if (positionLower.indexOf("senior") !== -1) {
+          salary = getRandomNumber(2500, 3000);
+        } else {
+          salary = getRandomNumber(4000, 4500);
+        }
+
+        return salary;
+      }
+
+      function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      for (var i = 0; i < team.length; i++) {
+        team[i].tellAboutYourself();
+      }
+
+      team.showTeam = function () {
+        for (var i = 0; i < this[i].length; i++) {
+          console.log(
+            `${this[i].name} - ${this[i].position}. Зарплата - ${this[i].salary}$.`
+          );
+        }
+      };
+
+      team.showTeam();
+    </script>
+  </head>
+  <body></body>
+</html>
